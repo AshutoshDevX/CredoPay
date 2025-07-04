@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import { Home } from "./pages/Home";
-import { SignIn } from "./pages/SignIn";
-import { SignUp } from "./pages/SignUp";
+import { Home } from "./pages/Home.jsx";
+import { SignIn } from "./pages/SignIn.jsx";
+import { SignUp } from "./pages/SignUp.jsx";
 import { Toaster } from "@/components/ui/sonner";
-import { CustomerTransactions } from "./Pages/CustomerTransaction";
-import { BankerAccounts } from "./Pages/BankerAccounts";
+import { CustomerTransactions } from "./Pages/CustomerTransaction.jsx";
+import { BankerAccounts } from "./Pages/BankerAccounts.jsx";
 function App() {
   return (
     <BrowserRouter>
