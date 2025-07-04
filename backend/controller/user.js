@@ -22,16 +22,37 @@ export const userSignUp = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = await prisma.user.create({
-            data: { full_name, email, phone, password: hashedPassword, user_type }
+        const newUser = await prisma.user.create({
+            data: {
+                full_name,
+                email,
+                phone,
+                user_type,
+                password: hashedPassword,
+                // Now: also create account with ₹1000
+                accounts: user_type === 'customer'
+                    ? {
+                        create: {
+                            account_number: uuidv4(),        // Can replace with custom generator
+                            account_type: 'savings',
+                            balance: 1000
+                        }
+                    }
+                    : undefined
+            },
+            include: {
+                accounts: true
+            }
         });
 
         res.status(201).json({
             message: 'Signup successful',
-            user_id: user.user_id,
-            full_name: user.full_name,
-            user_type: user.user_type
+            user_id: newUser.user_id,
+            user_type: newUser.user_type,
+            full_name: newUser.full_name,
+            accounts: newUser.accounts ?? []
         });
+
     } catch (err) {
         console.error('Signup Error:', err);
         res.status(500).json({ message: 'Internal server error' });
