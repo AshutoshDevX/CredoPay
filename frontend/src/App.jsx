@@ -3,8 +3,8 @@ import { Home } from "./pages/Home.jsx";
 import { SignIn } from "./pages/SignIn.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { Toaster } from "@/components/ui/sonner";
-import { CustomerTransactions } from "./Pages/CustomerTransaction.jsx";
-import { BankerAccounts } from "./Pages/BankerAccounts.jsx";
+import { CustomerTransactions } from "./pages/CustomerTransaction.jsx";
+import { BankerAccounts } from "./pages/BankerAccounts.jsx";
 function App() {
   return (
     <BrowserRouter>
