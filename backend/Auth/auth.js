@@ -1,4 +1,8 @@
-const authMiddleware = async (req, res, next) => {
+import { PrismaClient } from '../generated/prisma/index.js';
+const prisma = new PrismaClient()
+
+
+export const authMiddleware = async (req, res, next) => {
     const token = req.header('Authorization');
     if (!token) return res.status(401).json({ message: 'No token provided' });
 
