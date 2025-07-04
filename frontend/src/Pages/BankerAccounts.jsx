@@ -19,7 +19,7 @@ export function BankerAccounts() {
 
     const fetchCustomers = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/banker/customers", {
+            const res = await axios.get("https://credopay.onrender.com/banker/customers", {
                 headers: {
                     Authorization: localStorage.getItem("access_token"),
                 },
@@ -36,7 +36,7 @@ export function BankerAccounts() {
 
     const fetchCustomerTransactions = async (userId) => {
         try {
-            const res = await axios.get(`http://localhost:3000/banker/customer/${userId}`, {
+            const res = await axios.get(`https://credopay.onrender.com/banker/customer/${userId}`, {
                 headers: {
                     Authorization: localStorage.getItem("access_token"),
                 },

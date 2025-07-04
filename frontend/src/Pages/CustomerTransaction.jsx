@@ -22,7 +22,7 @@ export function CustomerTransactions() {
 
     const fetchTransactions = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/transactions/transaction-history", {
+            const res = await axios.get("https://credopay.onrender.com/transactions/transaction-history", {
                 headers: {
                     Authorization: localStorage.getItem("access_token"),
                 },
@@ -45,7 +45,7 @@ export function CustomerTransactions() {
 
         try {
             await axios.post(
-                `http://localhost:3000/transactions/${action}`,
+                `https://credopay.onrender.com/transactions/${action}`,
                 {
                     account_id: activeAccount.account_id,
                     amount: Number(amount),

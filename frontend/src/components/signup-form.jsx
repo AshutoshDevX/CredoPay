@@ -27,7 +27,7 @@ export function SignUpForm({ className, ...props }) {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:3000/user/signup", {
+            const res = await axios.post("https://credopay.onrender.com/user/signup", {
                 full_name: fullName,
                 phone,
                 email,
