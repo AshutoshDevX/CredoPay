@@ -1,7 +1,8 @@
 import { PrismaClient } from '../generated/prisma/index.js';
 const prisma = new PrismaClient()
 import { signupSchema, loginSchema } from '../validators/authSchema.js';
-
+import bcrypt from "bcrypt";
+import { v4 as uuidv4 } from 'uuid';
 //User SignUp Logic
 export const userSignUp = async (req, res) => {
     try {

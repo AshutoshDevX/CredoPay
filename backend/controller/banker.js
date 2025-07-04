@@ -1,4 +1,5 @@
-
+import { PrismaClient } from '../generated/prisma/index.js';
+const prisma = new PrismaClient()
 
 export const getCustomers = async (req, res) => {
     const customers = await prisma.user.findMany({
@@ -29,6 +30,5 @@ export const getTransactions = async (req, res) => {
     if (!customer || customer.user_type !== 'customer') {
         return res.status(404).json({ message: 'Customer not found' });
     }
-
     res.json(customer);
 }

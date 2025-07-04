@@ -37,8 +37,8 @@ model Account {
   balance        Float    @default(0)
   created_at     DateTime @default(now())
 
-  user        User          @relation(fields: [user_id], references: [user_id])
-  Transaction Transaction[]
+  user         User          @relation(fields: [user_id], references: [user_id])
+  transactions Transaction[]
 }
 
 //Transactions Schema
