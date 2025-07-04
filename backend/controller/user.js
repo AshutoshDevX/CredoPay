@@ -1,0 +1,79 @@
+import { PrismaClient } from '../generated/prisma/index.js';
+const prisma = new PrismaClient()
+import { signupSchema, loginSchema } from '../validators/authSchema.js';
+
+//User SignUp Logic
+export const userSignUp = async (req, res) => {
+    try {
+        const parsed = signupSchema.safeParse(req.body);
+        if (!parsed.success) {
+            return res.status(400).json({ errors: parsed.error.flatten().fieldErrors });
+        }
+
+        const { full_name, email, phone, password, user_type } = parsed.data;
+
+        const existingUser = await prisma.user.findFirst({
+            where: { OR: [{ email }, { phone }] }
+        });
+
+        if (existingUser) {
+            return res.status(409).json({ message: 'Email or phone already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const user = await prisma.user.create({
+            data: { full_name, email, phone, password: hashedPassword, user_type }
+        });
+
+        res.status(201).json({
+            message: 'Signup successful',
+            user_id: user.user_id,
+            full_name: user.full_name,
+            user_type: user.user_type
+        });
+    } catch (err) {
+        console.error('Signup Error:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+
+
+//User Sigin Logic
+export const userSignIn = async (req, res) => {
+    try {
+        const parsed = loginSchema.safeParse(req.body);
+        if (!parsed.success) {
+            return res.status(400).json({ errors: parsed.error.flatten().fieldErrors });
+        }
+
+        const { email, password } = parsed.data;
+
+        const user = await prisma.user.findUnique({ where: { email } });
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({ message: 'Invalid password' });
+
+        const accessToken = uuidv4();
+
+        await prisma.user.update({
+            where: { user_id: user.user_id },
+            data: { access_token: accessToken }
+        });
+
+        res.json({
+            message: 'Login successful',
+            access_token: accessToken,
+            user_type: user.user_type,
+            user_id: user.user_id,
+            full_name: user.full_name
+        });
+
+    } catch (err) {
+        console.error('Login Error:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
