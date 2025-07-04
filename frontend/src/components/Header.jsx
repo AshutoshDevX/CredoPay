@@ -8,8 +8,8 @@ export const Header = () => {
                 <a href="#">Products</a>
                 <a href="#">Company</a>
                 <a href="#">Support</a>
-                <Link to="/signin"><button className="border border-white px-4 py-2 rounded">User Login</button></Link>
-                <button className="bg-white text-black px-4 py-2 rounded font-semibold">Employee</button>
+                <Link to="/signin"><button className="border border-white px-4 py-2 rounded">Login</button></Link>
+                <Link to="/signup"><button className="bg-white text-black px-4 py-2 rounded font-semibold">SignUp</button></Link>
             </div>
         </nav>
     )

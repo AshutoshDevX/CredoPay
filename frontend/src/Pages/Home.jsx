@@ -3,7 +3,7 @@ import mobile from "../assets/mobile.png"
 import { Header } from "../components/Header";
 import { Feature } from "../components/Feature";
 import { FaCreditCard, FaLock, FaChartLine } from "react-icons/fa";
-
+import { Link } from "react-router";
 export function Home() {
     return (
         <div className="relative min-h-screen bg-[#0a0f3c] overflow-hidden text-white">
@@ -26,9 +26,11 @@ export function Home() {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <button className="bg-blue-600 px-6 py-3 rounded-md text-white font-semibold">
-                            Open an account
-                        </button>
+                        <Link to="/signup">
+                            <button className="bg-blue-600 px-6 py-3 rounded-md text-white font-semibold">
+                                Open an account
+                            </button>
+                        </Link>
                         <button className="border px-6 py-3 rounded-md border-white text-white">
                             See our yields
                         </button>
@@ -95,7 +97,7 @@ export function Home() {
                             <ul className="text-gray-300 mb-6 space-y-1">
                                 {plan.features.map((f, i) => <li key={i}>{f}</li>)}
                             </ul>
-                            <a href="/#" className="bg-blue-600 text-white px-6 py-2 rounded-full inline-block hover:bg-blue-700 transition">{plan.cta}</a>
+                            <Link to="/#" className="bg-blue-600 text-white px-6 py-2 rounded-full inline-block hover:bg-blue-700 transition">{plan.cta}</Link>
                         </div>
                     ))}
                 </div>
@@ -105,7 +107,7 @@ export function Home() {
             <section id="contact" className="bg-[#0a0f3c] text-white py-24 px-6 flex flex-col items-center text-center">
                 <h3 className="text-3xl font-semibold mb-4">Get in Touch</h3>
                 <p className="text-gray-400 mb-6">Have any questions? Reach out to us, and we’ll be happy to help.</p>
-                <a href="mailto:tranzixsupport@gmail.com" className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">Email Us</a>
+                <Link to="mailto:tranzixsupport@gmail.com" className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">Email Us</Link>
             </section>
 
 
