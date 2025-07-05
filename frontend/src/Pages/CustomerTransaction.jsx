@@ -91,16 +91,23 @@ export function CustomerTransactions() {
             {accounts.map((account) => (
                 <div
                     key={account.account_id}
-                    className="mb-8 border p-4 rounded-lg bg-[#131c4b]"
+                    className="mb-10 bg-[#131c4b] rounded-xl shadow-lg border border-[#1e2b60] overflow-hidden"
                 >
-                    <h3 className="text-lg font-bold">Account: {account.account_number}</h3>
-                    <p>Type: {account.account_type}</p>
-                    <p className="mb-4">Balance: ₹{account.balance}</p>
+                    {/* Account Info Section */}
+                    <div className="p-6 border-b border-[#2a3972] bg-[#141c45]/80 backdrop-blur-sm">
+                        <h3 className="text-xl font-bold text-white">Account: {account.account_number}</h3>
+                        <p className="text-sm text-indigo-300">Type: {account.account_type}</p>
+                        <p className="text-base mt-1 font-semibold text-green-400">
+                            Balance: ₹{account.balance}
+                        </p>
+                    </div>
 
-                    <div className="flex gap-4 mb-4">
+                    {/* Transaction Buttons */}
+                    <div className="p-4 flex gap-4 bg-[#0f163c] border-b border-[#2a3972]">
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button
+                                    className="bg-blue-600 hover:bg-blue-700"
                                     onClick={() => {
                                         setAction("deposit");
                                         setActiveAccount(account);
@@ -111,7 +118,7 @@ export function CustomerTransactions() {
                             </DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
-                                    <DialogTitle>Deposit to Account</DialogTitle>
+                                    <DialogTitle className="text-white">Deposit to Account</DialogTitle>
                                 </DialogHeader>
                                 <Input
                                     type="number"
@@ -127,6 +134,7 @@ export function CustomerTransactions() {
                             <DialogTrigger asChild>
                                 <Button
                                     variant="secondary"
+                                    className="bg-gray-600 hover:bg-gray-700 text-white"
                                     onClick={() => {
                                         setAction("withdraw");
                                         setActiveAccount(account);
@@ -137,7 +145,7 @@ export function CustomerTransactions() {
                             </DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
-                                    <DialogTitle>Withdraw from Account</DialogTitle>
+                                    <DialogTitle className="text-white">Withdraw from Account</DialogTitle>
                                 </DialogHeader>
                                 <Input
                                     type="number"
@@ -150,19 +158,22 @@ export function CustomerTransactions() {
                         </Dialog>
                     </div>
 
-                    <div>
-                        <h4 className="font-medium mb-2">Transactions:</h4>
-                        <ul className="text-sm space-y-1">
+                    {/* Transaction History */}
+                    <div className="p-5 bg-[#10193b]">
+                        <h4 className="text-indigo-400 text-lg font-semibold mb-2">Transaction History</h4>
+                        <ul className="text-sm text-gray-200 space-y-1 pl-4 list-disc">
                             {account.transactions?.length === 0 && <li>No transactions yet.</li>}
                             {account.transactions?.map((tx) => (
                                 <li key={tx.transaction_id}>
-                                    {tx.timestamp.slice(0, 10)} - {tx.type.toUpperCase()} - ₹{tx.amount}
+                                    <span className="text-gray-400">{tx.timestamp.slice(0, 10)}</span> —{" "}
+                                    <span className="font-bold text-white">{tx.type.toUpperCase()}</span> — ₹{tx.amount}
                                 </li>
                             ))}
                         </ul>
                     </div>
                 </div>
             ))}
+
         </div>
     );
 }
