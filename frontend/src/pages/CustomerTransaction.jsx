@@ -89,12 +89,9 @@ export function CustomerTransactions() {
             </div>
 
             {accounts.map((account) => (
-                <div
-                    key={account.account_id}
-                    className="mb-10 bg-[#131c4b] rounded-xl shadow-lg border border-[#1e2b60] overflow-hidden"
-                >
-                    {/* Account Info Section */}
-                    <div className="p-6 border-b border-[#2a3972] bg-[#141c45]/80 backdrop-blur-sm">
+                <div key={account.account_id} className="space-y-6 mb-12">
+                    {/* Account Info Card */}
+                    <div className="bg-[#131c4b] p-5 rounded-xl shadow-md border border-[#1e2b60]">
                         <h3 className="text-xl font-bold text-white">Account: {account.account_number}</h3>
                         <p className="text-sm text-indigo-300">Type: {account.account_type}</p>
                         <p className="text-base mt-1 font-semibold text-green-400">
@@ -102,8 +99,8 @@ export function CustomerTransactions() {
                         </p>
                     </div>
 
-                    {/* Transaction Buttons */}
-                    <div className="p-4 flex gap-4 bg-[#0f163c] border-b border-[#2a3972]">
+                    {/* Deposit / Withdraw Card */}
+                    <div className="bg-[#10193b] p-5 rounded-xl shadow-md border border-[#1d2958] flex gap-4 flex-wrap">
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button
@@ -133,7 +130,6 @@ export function CustomerTransactions() {
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button
-                                    variant="secondary"
                                     className="bg-gray-600 hover:bg-gray-700 text-white"
                                     onClick={() => {
                                         setAction("withdraw");
@@ -158,9 +154,9 @@ export function CustomerTransactions() {
                         </Dialog>
                     </div>
 
-                    {/* Transaction History */}
-                    <div className="p-5 bg-[#10193b]">
-                        <h4 className="text-indigo-400 text-lg font-semibold mb-2">Transaction History</h4>
+                    {/* Transaction History Card */}
+                    <div className="bg-[#0e1538] p-5 rounded-xl shadow-md border border-[#253163]">
+                        <h4 className="text-indigo-400 text-lg font-semibold mb-3">Transaction History</h4>
                         <ul className="text-sm text-gray-200 space-y-1 pl-4 list-disc">
                             {account.transactions?.length === 0 && <li>No transactions yet.</li>}
                             {account.transactions?.map((tx) => (
@@ -173,6 +169,7 @@ export function CustomerTransactions() {
                     </div>
                 </div>
             ))}
+
 
         </div>
     );
