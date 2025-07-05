@@ -1,10 +1,13 @@
+import React from 'react'
 import { Button } from "@/components/ui/button"
 import mobile from "../assets/mobile.png"
 import { Header } from "../components/Header";
 import { Feature } from "../components/Feature";
 import { FaCreditCard, FaLock, FaChartLine } from "react-icons/fa";
 import { Link } from "react-router";
-export function Home() {
+
+
+export const Home = () => {
     return (
         <div className="relative min-h-screen bg-[#0a0f3c] overflow-hidden text-white">
             <Header />
@@ -145,6 +148,3 @@ export function Home() {
         </div>
     )
 }
-
-
-
