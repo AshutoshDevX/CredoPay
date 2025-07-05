@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import { Home } from "../src/pages/Home.jsx"
+import { Home } from "./pages/Home.jsx";
 import { SignIn } from "./pages/SignIn.jsx";
 import { SignUp } from "./pages/SignUp.jsx";
 import { Toaster } from "@/components/ui/sonner";
