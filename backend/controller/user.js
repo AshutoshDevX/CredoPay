@@ -8,7 +8,7 @@ export const userSignUp = async (req, res) => {
     try {
         const parsed = signupSchema.safeParse(req.body);
         if (!parsed.success) {
-            return res.status(400).json({ errors: parsed.error.flatten().fieldErrors });
+            return res.status(400).json({ errors: parsed.error });
         }
 
         const { full_name, email, phone, password, user_type } = parsed.data;
@@ -68,7 +68,7 @@ export const userSignIn = async (req, res) => {
     try {
         const parsed = loginSchema.safeParse(req.body);
         if (!parsed.success) {
-            return res.status(400).json({ errors: parsed.error.flatten().fieldErrors });
+            return res.status(400).json({ errors: parsed.error });
         }
 
         const { email, password } = parsed.data;
