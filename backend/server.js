@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 
 app.use(cors({
-    origin: ['https://credo-pay.onrender.com'],
+    origin: ['https://credo-pay.onrender.com', 'https://localhost:5174'],
     credentials: true
 }));
 app.use(express.json());
