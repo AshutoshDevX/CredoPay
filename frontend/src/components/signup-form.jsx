@@ -40,6 +40,7 @@ export function SignUpForm({ className, ...props }) {
             toast.success("Signup successful! Redirecting to login...");
             setTimeout(() => navigate("/signin"), 1500);
         } catch (err) {
+            console.log(err)
             const msg = err.response?.data?.message || "Signup failed";
             toast.error(msg);
         }
